@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -21,7 +14,10 @@ app.use(express.json());
 // Função para conectar ao MongoDB
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGODB_URI);
+    await mongoose.connect(process.env.MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
     console.log('MongoDB conectado');
   } catch (err) {
     console.error('Erro na conexão com o MongoDB:', err);
@@ -40,6 +36,56 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const express = require('express');
+// const mongoose = require('mongoose');
+// const cors = require('cors');
+// const dotenv = require('dotenv');
+// const produtosRoutes = require('./routes/produtos');
+
+// // Carregar variáveis de ambiente
+// dotenv.config();
+
+// const app = express();
+// app.use(cors());
+// app.use(express.json());
+
+// // Função para conectar ao MongoDB
+// const connectDB = async () => {
+//   try {
+//     await mongoose.connect(process.env.MONGODB_URI);
+//     console.log('MongoDB conectado');
+//   } catch (err) {
+//     console.error('Erro na conexão com o MongoDB:', err);
+//     process.exit(1); // Termina o processo se não conseguir conectar
+//   }
+// };
+
+// // Conectar ao banco de dados
+// connectDB();
+
+// // Rotas
+// app.use('/api/produtos', produtosRoutes);
+
+// // Inicializar o servidor
+// const PORT = process.env.PORT || 5000;
+// app.listen(PORT, () => {
+//   console.log(`Servidor rodando na porta ${PORT}`);
+// });
 
 
 

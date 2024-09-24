@@ -1,36 +1,52 @@
 const mongoose = require('mongoose');
 
-// Definindo o esquema de Movimentacao
-const MovimentacaoSchema = new mongoose.Schema({
-  produtoId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Produto', // Referência ao modelo Produto
-    required: true,
-  },
-  tipo: {
-    type: String,
-    enum: ['entrada', 'saida'], // Tipos permitidos: entrada ou saída
-    required: true,
-  },
-  quantidade: {
-    type: Number,
-    required: true,
-  },
-  valor: {
-    type: Number,
-    required: true, // Valor da movimentação
-  },
-  data: {
-    type: Date,
-    default: Date.now, // Data padrão como a atual
-  },
+const movimentacaoSchema = new mongoose.Schema({
+  produtoId: { type: mongoose.Schema.Types.ObjectId, ref: 'Produto', required: true },
+  tipo: { type: String, enum: ['entrada', 'saida'], required: true },
+  quantidade: { type: Number, required: true },
+  valor: { type: Number, required: true },
+  data: { type: Date, default: Date.now },
 });
 
-// Evitar sobreposição do modelo
-const Movimentacao = mongoose.models.Movimentacao || mongoose.model('Movimentacao', MovimentacaoSchema);
+module.exports = mongoose.model('Movimentacao', movimentacaoSchema);
 
-// Exportando o modelo de Movimentacao
-module.exports = Movimentacao;
+
+
+
+
+// const mongoose = require('mongoose');
+
+// // Definindo o esquema de Movimentacao
+// const MovimentacaoSchema = new mongoose.Schema({
+//   produtoId: {
+//     type: mongoose.Schema.Types.ObjectId,
+//     ref: 'Produto', // Referência ao modelo Produto
+//     required: true,
+//   },
+//   tipo: {
+//     type: String,
+//     enum: ['entrada', 'saida'], // Tipos permitidos: entrada ou saída
+//     required: true,
+//   },
+//   quantidade: {
+//     type: Number,
+//     required: true,
+//   },
+//   valor: {
+//     type: Number,
+//     required: true, // Valor da movimentação
+//   },
+//   data: {
+//     type: Date,
+//     default: Date.now, // Data padrão como a atual
+//   },
+// });
+
+// // Evitar sobreposição do modelo
+// const Movimentacao = mongoose.models.Movimentacao || mongoose.model('Movimentacao', MovimentacaoSchema);
+
+// // Exportando o modelo de Movimentacao
+// module.exports = Movimentacao;
 
 
 

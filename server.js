@@ -14,10 +14,7 @@ app.use(express.json());
 // Função para conectar ao MongoDB
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(process.env.MONGODB_URI); // Removidas as opções obsoletas
     console.log('MongoDB conectado');
   } catch (err) {
     console.error('Erro na conexão com o MongoDB:', err);
@@ -36,8 +33,6 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
-
-
 
 
 

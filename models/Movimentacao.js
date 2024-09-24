@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-// Definindo o esquema de movimentação
+// Definindo o esquema de Movimentacao
 const MovimentacaoSchema = new mongoose.Schema({
   produtoId: {
     type: mongoose.Schema.Types.ObjectId,
@@ -18,7 +18,7 @@ const MovimentacaoSchema = new mongoose.Schema({
   },
   valor: {
     type: Number,
-    required: true, // Valor da movimentação, se aplicável
+    required: true, // Valor da movimentação
   },
   data: {
     type: Date,
@@ -26,16 +26,11 @@ const MovimentacaoSchema = new mongoose.Schema({
   },
 });
 
-// Criando o modelo de movimentação
-const Movimentacao = mongoose.model('Movimentacao', MovimentacaoSchema);
+// Evitar sobreposição do modelo
+const Movimentacao = mongoose.models.Movimentacao || mongoose.model('Movimentacao', MovimentacaoSchema);
 
-// Exportando o modelo
+// Exportando o modelo de Movimentacao
 module.exports = Movimentacao;
-
-
-
-
-
 
 
 

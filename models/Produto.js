@@ -30,14 +30,11 @@ const ProdutoSchema = new mongoose.Schema({
   },
 });
 
+// Evitar sobreposição do modelo
+const Produto = mongoose.models.Produto || mongoose.model('Produto', ProdutoSchema);
+
 // Exportando o modelo de Produto
-const Produto = mongoose.model('Produto', ProdutoSchema);
 module.exports = Produto;
-
-
-
-
-
 
 
 
